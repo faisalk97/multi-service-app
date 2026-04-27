@@ -1,0 +1,17 @@
+services:
+  api-service:
+    image: python:3.12-slim
+    container_name: backend-api
+    volumes:
+      - ./backend:/app
+    command: python -m http.server 5000
+    ports:
+      - "5000:5000"
+
+  web-service:
+    image: nginx:alpine
+    container_name: frontend-web
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    ports:
+      - "8080:80"
